@@ -1,14 +1,18 @@
 import noImage from "./assets/no-image.png";
 import { useState } from "react";
 import { SaveListToStorage } from "./storage";
+import imageCompression from "browser-image-compression";
 
 export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDetails, SetDiaryList, DiaryList }) {
   const [file, setFile] = useState(null);
+  const [ShowCompressed, SetShowCompressed] = useState(false);
   const [ShowConfirm, SetShowConfirm] = useState(false);
+  const [CompressedMsg, SetCompressedMsg] = useState("");
 
   const greenButtonClasses = "bg-[#1e7973] w-fit px-4 py-1 rounded hover:bg-[#32918a]";
   const redButtonClasses = "bg-red-900 w-fit px-3 py-1 rounded hover:bg-red-500";
   const defaultButtonClasses = "bg-[#4c4f56] w-fit px-3 py-1 rounded hover:bg-[#62666e]";
+  const maxImageSize = 360;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,22 +42,40 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   function handleImageChange(e) {
     const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imgSrc = reader.result;
-        setFile(imgSrc);
-        SetDiaryEntry({
-          ...entry,
-          [e.target.name]: imgSrc,
-        });
-      };
+    if (file) handleImageUpload(file, e.target.name);
 
-      reader.readAsDataURL(file);
+    async function handleImageUpload(imageFile, propName) {
+      // const imageFile = event.target.files[0];
+      // console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+      // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+      // let originalSize = `${(imageFile.size / 1024 / 1024).toFixed(2)} MB`;
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: maxImageSize,
+        useWebWorker: true,
+      };
+      try {
+        const compressedFile = await imageCompression(imageFile, options);
+        // console.log("compressedFile instanceof Blob", compressedFile instanceof Blob); // true
+        // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+        SetCompressedMsg(`Compressed from ${(imageFile.size / 1024 / 1024).toFixed(2)} MB` + " to " + `${(compressedFile.size / 1024 / 1024).toFixed(2)} MB`);
+        SetShowCompressed(true);
+
+        const reader = new FileReader();
+        reader.readAsDataURL(compressedFile);
+        reader.onload = () => {
+          setFile(reader.result);
+          SetDiaryEntry({
+            ...entry,
+            [propName]: reader.result,
+          });
+        };
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     // const imgSrc = URL.createObjectURL(e.target.files[0]);
-    // setFile(imgSrc);
     // SetDiaryEntry({
     //   ...entry,
     //   [e.target.name]: imgSrc,
@@ -67,10 +89,10 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   return (
     <div className={ShowConfirm ? "pointer-events-none" : "pointer-events-auto"}>
-      <dialog open className="border-[#4c4f56] rounded-md top-[20%] fixed border-2 border-opacity-75 mx-auto max-w-[900px] w-full p-4 bg-[#21242d] text-[white] px-4">
+      <dialog open className="border-[#4c4f56] rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[900px] w-fit p-4 bg-[#21242d] text-[white] px-4">
         <form onSubmit={handleSubmit} action="" className="flex flex-col gap-2">
-          <div className="flex justify-between gap-4 flex-wrap sm:flex-nowrap">
-            <div className="flex flex-col gap-0 justify-between w-full">
+          <div className="flex justify-between gap-4 flex-wrap sm:flex-nowrap ">
+            <div className="flex flex-col gap-0 justify-between   ">
               <p className="bg-[#374151] rounded-md w-fit mx-auto px-6" type="text" name="date" id="date">
                 {entry.date}
               </p>
@@ -117,7 +139,10 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
                 <input className="hidden" onChange={handleImageChange} type="file" name="img" id="file" />
               </div>
             </div>
-            <img className="max-w-[400px] h-[280px] object-scale-down w-[60%]" src={getEntryImage()} alt="" />
+            <div className="  ">
+              <img className="max-w-[400px] h-[280px] object-scale-down w-full" src={getEntryImage()} alt="" />
+              {ShowCompressed && <p className="text-gray-300 text-center italic text-sm">{CompressedMsg}</p>}
+            </div>
           </div>
 
           {ShowConfirm && (
@@ -131,7 +156,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
                     const newList = DiaryList;
                     newList.splice(DiaryList.indexOf(entry), 1);
                     SaveListToStorage([...newList]);
-                    console.log(newList);
+                    // console.log(newList);
                   }}
                   className={redButtonClasses}>
                   Delete
