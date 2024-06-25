@@ -2,7 +2,6 @@
 import noImage from "./assets/placeholder-image.jpg";
 import settingsIcon from "./assets/SettingsGear.svg";
 import Settings from "./Settings";
-// import { diarySettings } from "./DiaryList";
 import { useState, useEffect } from "react";
 
 export default function Header({ SetDiaryEntry, SetShowDiaryDetails, DiaryList, SetShowEntryExists, SetBlockClicks, SetDiarySettings, DiarySettings }) {

@@ -4,58 +4,19 @@ import DiaryEntryDetails from "./DiaryEntryDetails";
 import noImage from "./assets/no-image.png";
 import { GetListFromStorage, LoadSettings } from "./storage";
 import Header from "./Header";
-// import dummyImg from "./assets/dummy.jpeg";
-
-// export let allowMultipleEtries = true;
-// export const diarySettings = {
-//   allowMultipleEtries: true,
-// };
-// export function SetAllowMultiple(value) {
-//   //  allowMultipleEtries = value;
-//   console.log(value);
-//   diarySettings.allowMultipleEtries = value;
-// }
 
 export default function DiaryList() {
   const [DiaryList, SetDiaryList] = useState([]);
-  //   {
-  //     id: 4,
-  //     title: "It can also be successfully used",
-  //     date: "2024-06-23",
-  //     img: dummyImg,
-  //     content:
-  //       "By taking the writer away from the subject matter that is causing the block, a random sentence may allow them to see the project theyre working on in a different light and perspective. For those writers who have writers block, this can be an excellent way to take a step to crumbling those walls. By taking the writer away from the subject matter that is causing the block, a random sentence may allow them to see the project theyre working on in a different light and perspective. Sometimes all it takes is to get that first sentence down to help break the block. It can also be successfully used as a daily exercise to get writers to begin writing. Being shown a random sentence and using it to complete a paragraph each day can be an excellent way to begin any writing session.",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Random Sentence Generator",
-  //     date: "2024-06-22",
-  //     img: dummyImg,
-  //     content:
-  //       "For those writers who have writers block, this can be an excellent way to take a step to crumbling those walls. By taking the writer away from the subject matter that is causing the block, a random sentence may allow them to see the project theyre working on in a different light and perspective. Sometimes all it takes is to get that first sentence down to help break the block. It can also be successfully used as a daily exercise to get writers to begin writing. Being shown a random sentence and using it to complete a paragraph each day can be an excellent way to begin any writing session.",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Frequently Asked Questions",
-  //     date: "2024-06-21",
-  //     img: dummyImg,
-  //     content:
-  //       "In order to have a complete sentence, the sentence must have a minimum of three word types: a subject, a verb, and an object. In most cases, the subject is a noun or a pronoun. For example, the sentence 'Jack loves candy' is a complete sentence because it has all three elements needed to make a complete sentence. Jack (the subject) loves (the verb) candy (the object).",
-  //   },
-  //   { id: 1, title: "Diary Title 1", date: "2024-06-19", img: dummyImg, content: "This is some entry on day 1" },
-  // ]);
-
   const [DiaryEntry, SetDiaryEntry] = useState({ id: 0, title: "", date: "2024-06-24", img: noImage, content: "" });
   const [ShowEntryExists, SetShowEntryExists] = useState(false);
   const [ShowDiaryDetails, SetShowDiaryDetails] = useState(false);
-
   const [DiarySettings, SetDiarySettings] = useState({ allowMultipleEtries: true });
   const [BlockClicks, SetBlockClicks] = useState(false);
 
   useEffect(() => {
     SetDiaryList(GetListFromStorage());
     SetDiarySettings(LoadSettings());
-  }, []); //Get diary entries from locat storage
+  }, []); //OnStart - Get diary entries and Settings from local storage
 
   return (
     <div className={ShowEntryExists || ShowDiaryDetails || BlockClicks ? "pointer-events-none" : "pointer-events-auto"}>
