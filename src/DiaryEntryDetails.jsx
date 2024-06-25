@@ -34,7 +34,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        console.log(reader.result);
+        // console.log(reader.result);
         const imgSrc = reader.result;
         setFile(imgSrc);
         SetDiaryEntry({
