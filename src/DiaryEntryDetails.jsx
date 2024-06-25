@@ -12,7 +12,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
   const greenButtonClasses = "bg-[#1e7973] w-fit px-4 py-1 rounded hover:bg-[#32918a]";
   const redButtonClasses = "bg-red-900 w-fit px-3 py-1 rounded hover:bg-red-500";
   const defaultButtonClasses = "bg-[#4c4f56] w-fit px-3 py-1 rounded hover:bg-[#62666e]";
-  const maxImageSize = 360;
+  const maxImageSize = 480;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -133,7 +133,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
                   </button>
                 </div>
 
-                <label htmlFor="file" className={defaultButtonClasses}>
+                <label htmlFor="file" className={`${defaultButtonClasses} hover:cursor-pointer`}>
                   Upload Image
                 </label>
                 <input className="hidden" onChange={handleImageChange} type="file" name="img" id="file" />
