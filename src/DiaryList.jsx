@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import DiaryListItem from "./DiaryListItem";
 import DiaryEntryDetails from "./DiaryEntryDetails";
 import noImage from "./assets/no-image.png";
+import { GetListFromStorage } from "./storage";
 import AddEntry from "./AddEntry";
 import dummyImg from "./assets/dummy.jpeg";
 
@@ -36,12 +37,7 @@ export default function DiaryList({ DiaryEntry, SetDiaryEntry, ShowDiaryDetails,
 
   const [ShowEntryExists, SetShowEntryExists] = useState(false);
 
-  useEffect(
-    (x) => {
-      console.log("Diary List changed");
-    },
-    [DiaryList]
-  );
+  useEffect(() => SetDiaryList(GetListFromStorage()), []);
 
   return (
     <div className={ShowEntryExists || ShowDiaryDetails ? "pointer-events-none" : "pointer-events-auto"}>
@@ -50,8 +46,8 @@ export default function DiaryList({ DiaryEntry, SetDiaryEntry, ShowDiaryDetails,
         {DiaryList.length > 0 ? (
           <div className=" grid grid-cols-4 m-auto max-w-[1116px] gap-6">
             {DiaryList.map((entry) => {
-              // entry.img = noImage;
-              return <DiaryListItem key={entry.date} entry={entry} SetShowDiaryDetails={SetShowDiaryDetails} SetDiaryEntry={SetDiaryEntry} />;
+              // return <DiaryListItem key={entry.date} entry={entry} SetShowDiaryDetails={SetShowDiaryDetails} SetDiaryEntry={SetDiaryEntry} />;
+              return <DiaryListItem key={entry.id} entry={entry} SetShowDiaryDetails={SetShowDiaryDetails} SetDiaryEntry={SetDiaryEntry} />;
             })}
           </div>
         ) : (
