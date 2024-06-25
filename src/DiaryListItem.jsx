@@ -1,9 +1,3 @@
-import DiaryEntryDetails from "./DiaryEntryDetails";
-import { useState } from "react";
-// import noImage from "./assets/no-image.png";
-// import reactLogo from "./assets/react.svg";
-import dummyImg from "./assets/dummy.jpeg";
-
 export default function DiaryListItem({ entry, SetShowDiaryDetails, SetDiaryEntry }) {
   const sectionStyle = { textShadow: "1px 1px 2px black, 0 0 25px blue, 0 0 5px black" };
 
