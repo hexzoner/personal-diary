@@ -1,4 +1,4 @@
-import noImage from "./assets/no-image.png";
+// import noImage from "./assets/no-image.png";
 import { useState } from "react";
 import { SaveListToStorage } from "./storage";
 import imageCompression from "browser-image-compression";
@@ -84,7 +84,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   function getEntryImage() {
     if (file) return file;
-    else return entry.img ? entry.img : noImage;
+    else return entry.img ? entry.img : "";
   }
 
   return (

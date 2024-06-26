@@ -1,0 +1,59 @@
+[33mcommit 68ee055e8e838296607ebcc186b1bb483c4f69f3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 21:13:27 2024 +0200
+
+    increase compressed image quality to 480
+
+[33mcommit c7b98e65f19b72315258b4f03ba336093487eef0[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 21:01:08 2024 +0200
+
+    added compressing images on upload
+
+[33mcommit 2ea147347bb21e67e1be47987d690267e96a722a[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 19:16:14 2024 +0200
+
+    added settings and feature to remove entries
+
+[33mcommit 37515a7c2496179481c8723bcaa38e522626c532[m
+Merge: 7d74dab 2301ac4
+Author: Serge <hexzon@gmail.com>
+Date:   Tue Jun 25 12:00:34 2024 +0200
+
+    Merge pull request #2 from hexzoner/dev
+    
+    Dev
+
+[33mcommit 2301ac4d5e97f9e5f646379e1c9dc023a2966813[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 11:59:41 2024 +0200
+
+    small polishing
+
+[33mcommit 507f37da8c500613d664e9a2b9e9e157d1a39428[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 11:44:18 2024 +0200
+
+    Changed page name
+
+[33mcommit 7d74dabba8e329cd476b4dbfd3480497133e99e7[m
+Merge: c09a77c b3f9b18
+Author: Serge <hexzon@gmail.com>
+Date:   Tue Jun 25 11:38:44 2024 +0200
+
+    Merge pull request #1 from hexzoner/dev
+    
+    saving images to storage
+
+[33mcommit b3f9b182134e85f30963ad54ed0bba02558800c7[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 11:37:20 2024 +0200
+
+    saving images to storage
+
+[33mcommit c09a77c6cfd59645e1c05f23ed2392a666c048e9[m
+Author: hexzoner <hexzon@gmail.com>
+Date:   Tue Jun 25 01:18:21 2024 +0200
+
+    first commit
