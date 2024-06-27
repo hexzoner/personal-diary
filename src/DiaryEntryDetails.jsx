@@ -1,4 +1,4 @@
-import noImage from "./assets/no-image.png";
+// import noImage from "./assets/no-image.png";
 import { useState } from "react";
 import { SaveListToStorage } from "./storage";
 import imageCompression from "browser-image-compression";
@@ -8,14 +8,27 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
   const [ShowCompressed, SetShowCompressed] = useState(false);
   const [ShowConfirm, SetShowConfirm] = useState(false);
   const [CompressedMsg, SetCompressedMsg] = useState("");
+  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorContent, setErrorContent] = useState(false);
 
   const greenButtonClasses = "bg-[#1e7973] w-fit px-4 py-1 rounded hover:bg-[#32918a]";
   const redButtonClasses = "bg-red-900 w-fit px-3 py-1 rounded hover:bg-red-500";
   const defaultButtonClasses = "bg-[#4c4f56] w-fit px-3 py-1 rounded hover:bg-[#62666e]";
+  const defaultMultiAreaClasses = "bg-[#374151] rounded-md max-w-[550px] h-[75%] resize-none px-2 border-solid border-red-400  border-[3px] border-opacity-0";
+  const titleClasses = "bg-[#374151] w-full rounded-md px-2 max-w-[550px] text-lg border-solid border-red-400  border-[3px] border-opacity-0";
   const maxImageSize = 480;
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (entry.content === "") setErrorContent(true);
+    else setErrorContent(false);
+
+    if (entry.title === "") setErrorTitle(true);
+    else setErrorTitle(false);
+
+    if (entry.title === "" || entry.content === "") return;
+
     // const entryExists = DiaryList.find((x) => x.date === entry.date);
     const entryExists = DiaryList.find((x) => x.id === entry.id);
 
@@ -34,6 +47,8 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
   }
 
   function handleChange(e) {
+    setErrorContent(false);
+    setErrorTitle(false);
     SetDiaryEntry({
       ...entry,
       [e.target.name]: e.target.value,
@@ -84,22 +99,22 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   function getEntryImage() {
     if (file) return file;
-    else return entry.img ? entry.img : noImage;
+    else return entry.img ? entry.img : "";
   }
 
   return (
     <div className={ShowConfirm ? "pointer-events-none" : "pointer-events-auto"}>
-      <dialog open className="border-[#4c4f56] rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[900px] w-fit p-4 bg-[#21242d] text-[white] px-4">
+      <dialog open className="border-[#4c4f56] rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[1000px] w-full p-4 bg-[#21242d] text-[white] px-4">
         <form onSubmit={handleSubmit} action="" className="flex flex-col gap-2">
           <div className="flex justify-between gap-4 flex-wrap sm:flex-nowrap ">
-            <div className="flex flex-col gap-0 justify-between   ">
-              <p className="bg-[#374151] rounded-md w-fit mx-auto px-6" type="text" name="date" id="date">
+            <div className="flex flex-col gap-0 justify-between  w-[60%] ">
+              <p className="bg-[#374151] rounded-md w-fit mx-auto px-6 text-lg" type="text" name="date" id="date">
                 {entry.date}
               </p>
               <input
                 onChange={handleChange}
                 value={entry.title}
-                className="bg-[#374151] w-full rounded-md px-2 max-w-[450px]"
+                className={errorTitle ? titleClasses + ` border-opacity-75` : titleClasses}
                 type="text"
                 name="title"
                 id="title"
@@ -108,12 +123,12 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
               <textarea
                 value={entry.content}
                 onChange={handleChange}
-                className="bg-[#374151] rounded-md max-w-[450px] h-[180px] resize-none px-2"
+                className={errorContent ? defaultMultiAreaClasses + ` border-opacity-75` : defaultMultiAreaClasses}
                 name="content"
                 id="content"
                 placeholder="Enter the details for the entry"></textarea>
 
-              <div className="flex justify-between max-w-[450px] gap-2">
+              <div className="flex justify-between max-w-[550px] gap-2">
                 <div className="flex gap-2 ">
                   <button type="submit" className={greenButtonClasses}>
                     Save
@@ -140,7 +155,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
               </div>
             </div>
             <div className="  ">
-              <img className="max-w-[400px] h-[280px] object-scale-down w-full" src={getEntryImage()} alt="" />
+              <img className="max-w-[600px] h-[480px] object-scale-down w-full" src={getEntryImage()} alt="" />
               {ShowCompressed && <p className="text-gray-300 text-center italic text-sm">{CompressedMsg}</p>}
             </div>
           </div>

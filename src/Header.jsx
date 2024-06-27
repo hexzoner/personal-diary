@@ -1,5 +1,5 @@
-// import noImage from "./assets/no-image.png";
-import noImage from "./assets/placeholder-image.jpg";
+import noImage from "./assets/default_placeholder.png";
+// import noImage from "./assets/placeholder-image.jpg";
 import settingsIcon from "./assets/SettingsGear.svg";
 import Settings from "./Settings";
 import { useState, useEffect } from "react";
