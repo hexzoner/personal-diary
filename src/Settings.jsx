@@ -19,7 +19,7 @@ export default function Settings({ SetShowSettings, DiarySettings, SetDiarySetti
 
   return (
     <div>
-      <dialog open className="px-8 py-6 fixed top-[10%] sm:right-[55%] sm:w-fit w-full  bg-base-200 text-base-content  rounded-lg pointer-events-auto">
+      <dialog open className="px-8 py-6 fixed top-[10%] sm:right-[45%] sm:w-fit w-full  bg-base-200 text-base-content  rounded-lg pointer-events-auto">
         <div className="flex flex-col gap-8">
           <p className="text-lg">Settings</p>
           <div className="flex gap-4 ">
