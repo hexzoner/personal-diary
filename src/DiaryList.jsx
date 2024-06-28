@@ -29,8 +29,8 @@ export default function DiaryList() {
         DiarySettings={DiarySettings}
         SetDiarySettings={SetDiarySettings}
       />
-
-      <div className="pt-32 pb-24 m-auto bg-[#16181e] min-h-[100vh]">
+      /*{" "}
+      <div className="pt-32 pb-24 m-auto bg-base-100 min-h-[100vh]">
         {DiaryList.length > 0 ? (
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  m-auto max-w-[1116px] gap-6">
             {DiaryList.map((entry) => {
@@ -39,17 +39,17 @@ export default function DiaryList() {
             })}
           </div>
         ) : (
-          <div className="text-white text-center text-3xl pt-48"> No entries were added</div>
+          <div className="text-base-content text-center text-3xl pt-48"> No entries were added</div>
         )}
 
         <div>
           {ShowDiaryDetails && <DiaryEntryDetails entry={DiaryEntry} SetDiaryEntry={SetDiaryEntry} SetShowDiaryDetails={SetShowDiaryDetails} SetDiaryList={SetDiaryList} DiaryList={DiaryList} />}
           {ShowEntryExists && (
             <div>
-              <dialog open className="px-8 py-6 fixed top-[40%] bg-[#21242d] text-white rounded-lg">
+              <dialog open className="px-8 py-6 fixed top-[40%] bg-base-100 text-base-content rounded-lg">
                 <div className="flex flex-col gap-8">
                   <p>The Diary Entry for today exists, please try again tomorrow!</p>
-                  <button onClick={() => SetShowEntryExists(false)} className="pointer-events-auto bg-[#565a61] px-4 py-2 rounded w-fit m-auto hover:bg-[#6a6f77] ">
+                  <button onClick={() => SetShowEntryExists(false)} className="pointer-events-auto btn btn-neutral w-fit m-auto">
                     Dismiss
                   </button>
                 </div>
@@ -57,7 +57,8 @@ export default function DiaryList() {
             </div>
           )}
         </div>
-      </div>
+      </div>{" "}
+      */
     </div>
   );
 }

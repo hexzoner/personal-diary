@@ -11,11 +11,11 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
   const [errorTitle, setErrorTitle] = useState(false);
   const [errorContent, setErrorContent] = useState(false);
 
-  const greenButtonClasses = "bg-[#1e7973] w-fit px-4 py-1 rounded hover:bg-[#32918a]";
-  const redButtonClasses = "bg-red-900 w-fit px-3 py-1 rounded hover:bg-red-500";
-  const defaultButtonClasses = "bg-[#4c4f56] w-fit px-3 py-1 rounded hover:bg-[#62666e]";
-  const defaultMultiAreaClasses = "bg-[#374151] rounded-md max-w-[550px] h-[75%] resize-none px-2 border-solid border-red-400  border-[3px] border-opacity-0";
-  const titleClasses = "bg-[#374151] w-full rounded-md px-2 max-w-[550px] text-lg border-solid border-red-400  border-[3px] border-opacity-0";
+  const greenButtonClasses = "btn btn-success";
+  const redButtonClasses = "btn btn-error";
+  const defaultButtonClasses = "btn btn-neutral";
+  const defaultMultiAreaClasses = "bg-base-100 text-base-content rounded-md max-w-[550px] h-[70%] min-h-[200px] resize-none px-2 border-solid border-error  border-[3px] border-opacity-0";
+  const titleClasses = "bg-base-100 text-base-content w-full rounded-md px-2 max-w-[550px] text-lg border-solid border-error  border-[3px] border-opacity-0";
   const maxImageSize = 480;
 
   function handleSubmit(e) {
@@ -104,11 +104,11 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   return (
     <div className={ShowConfirm ? "pointer-events-none" : "pointer-events-auto"}>
-      <dialog open className="border-[#4c4f56] rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[1000px] w-full p-4 bg-[#21242d] text-[white] px-4">
+      <dialog open className="border-neutral-content rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[1000px] w-full p-4 bg-base-300 text-neutral-content px-4">
         <form onSubmit={handleSubmit} action="" className="flex flex-col gap-2">
           <div className="flex justify-between gap-4 flex-wrap sm:flex-nowrap ">
-            <div className="flex flex-col gap-0 justify-between  w-[60%] ">
-              <p className="bg-[#374151] rounded-md w-fit mx-auto px-6 text-lg" type="text" name="date" id="date">
+            <div className="flex flex-col gap-1 justify-between w-full md:w-[60%] min-h-[300px]">
+              <p className="bg-base-100 text-base-content rounded-md w-fit mx-auto px-6 text-lg" type="text" name="date" id="date">
                 {entry.date}
               </p>
               <input
@@ -128,7 +128,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
                 id="content"
                 placeholder="Enter the details for the entry"></textarea>
 
-              <div className="flex justify-between max-w-[550px] gap-2">
+              <div className="flex justify-between max-w-[550px] gap-2 items-center pt-3">
                 <div className="flex gap-2 ">
                   <button type="submit" className={greenButtonClasses}>
                     Save
@@ -155,13 +155,13 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
               </div>
             </div>
             <div className="  ">
-              <img className="max-w-[600px] h-[480px] object-scale-down w-full" src={getEntryImage()} alt="" />
-              {ShowCompressed && <p className="text-gray-300 text-center italic text-sm">{CompressedMsg}</p>}
+              <img className="max-w-[600px] sm:h-[480px] w-full object-scale-down " src={getEntryImage()} alt="" />
+              {ShowCompressed && <p className="text-base-content text-center italic text-sm">{CompressedMsg}</p>}
             </div>
           </div>
 
           {ShowConfirm && (
-            <dialog open className="pointer-events-auto border-[#4c4f56] rounded-md top-[45%] fixed border-2 border-opacity-75 mx-auto max-w-[250px] w-full p-6 bg-[#21242d] text-[white] px-4">
+            <dialog open className="pointer-events-auto border-neutral-content rounded-md top-[45%] fixed border-2 border-opacity-75 mx-auto max-w-[250px] w-full p-6 px-4">
               <p className="text-center">Are you sure you want to delete this entry?</p>
               <div className="flex justify-between mt-4 px-2">
                 <button
