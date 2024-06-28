@@ -4,8 +4,8 @@ export default function DiaryListItem({ entry, SetShowDiaryDetails, SetDiaryEntr
   return (
     <div
       style={sectionStyle}
-      className={`rounded-[11px] m-auto text-white relative hover:cursor-pointer border-[#9ba5c5] 
-        border-opacity-0 hover:border-opacity-50 border-solid border-[3px] w-[250px] h-[375px]`}
+      className={`rounded-[11px] m-auto text-white relative hover:cursor-pointer border-primary 
+        border-opacity-0 hover:border-opacity-80 border-solid border-[3px] w-[250px] h-[375px]`}
       onClick={() => {
         SetShowDiaryDetails(true);
         SetDiaryEntry(entry);
