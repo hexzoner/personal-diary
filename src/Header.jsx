@@ -6,7 +6,7 @@ import Settings from "./Settings";
 import { useState, useEffect } from "react";
 
 export default function Header({ SetDiaryEntry, SetShowDiaryDetails, DiaryList, SetShowEntryExists, SetBlockClicks, SetDiarySettings, DiarySettings }) {
-  const newEntry = { id: DiaryList.length > 0 ? DiaryList[0].id + 1 : 0, title: "", date: "", img: noImage, content: "" };
+  const newEntry = { id: DiaryList.length > 0 ? DiaryList[0].id + 1 : 0, title: "", date: "", img: noImage, content: "", new: true };
   const [ShowSettings, SetShowSettings] = useState(false);
   const today = Date().toString().split(" ");
   newEntry.date = `${today[2]}  ${today[1]}  ${today[3]}`;

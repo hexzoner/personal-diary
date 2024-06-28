@@ -34,6 +34,8 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
     if (!entryExists) {
       //Adding new entry
+      entry.new = false;
+      // setIsNew(entry.new);
       SetDiaryList([entry, ...DiaryList]);
       SaveListToStorage([entry, ...DiaryList]);
     } else {
@@ -143,7 +145,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
                       e.preventDefault();
                       SetShowConfirm(true);
                     }}
-                    className={redButtonClasses}>
+                    className={!entry.new ? redButtonClasses : "hidden"}>
                     Delete
                   </button>
                 </div>

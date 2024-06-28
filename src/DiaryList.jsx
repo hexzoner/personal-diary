@@ -7,7 +7,7 @@ import Header from "./Header";
 
 export default function DiaryList() {
   const [DiaryList, SetDiaryList] = useState([]);
-  const [DiaryEntry, SetDiaryEntry] = useState({ id: 0, title: "", date: "2024-06-24", img: "", content: "" });
+  const [DiaryEntry, SetDiaryEntry] = useState({ id: 0, title: "", date: "", img: "", content: "" });
   const [ShowEntryExists, SetShowEntryExists] = useState(false);
   const [ShowDiaryDetails, SetShowDiaryDetails] = useState(false);
   const [DiarySettings, SetDiarySettings] = useState({ allowMultipleEtries: true });
