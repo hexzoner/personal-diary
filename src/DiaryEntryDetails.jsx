@@ -104,7 +104,7 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
 
   return (
     <div className={ShowConfirm ? "pointer-events-none" : "pointer-events-auto"}>
-      <dialog open className="border-neutral-content rounded-md top-[12%] fixed border-2 border-opacity-75 mx-auto max-w-[1000px] w-full p-4 bg-base-300 text-neutral-content px-4">
+      <dialog open className="border-neutral-content rounded-md top-[13%] fixed border-2 border-opacity-75 mx-auto max-w-[1000px] w-full p-4 bg-base-300 text-neutral-content px-4">
         <form onSubmit={handleSubmit} action="" className="flex flex-col gap-2">
           <div className="flex justify-between gap-4 flex-wrap sm:flex-nowrap ">
             <div className="flex flex-col gap-1 justify-between w-full md:w-[60%] min-h-[300px]">

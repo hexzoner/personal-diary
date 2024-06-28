@@ -42,7 +42,7 @@ export default function Header({ SetDiaryEntry, SetShowDiaryDetails, DiaryList, 
               SetDiaryEntry(newEntry);
             }
           }}
-          className=" px-8 py-4 btn btn-neutral w-[80%] m-auto sm:w-auto sm:mr-4 mt-1 sm:mt-0">
+          className=" px-8 py-4 btn btn-neutral w-[80%] m-auto sm:w-auto sm:mr-4 ">
           Add Entry
         </button>
       </div>
