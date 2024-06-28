@@ -66,7 +66,7 @@ export default function Themes({ update }) {
         {themes.map((theme) => {
           return (
             <li key={theme}>
-              <input onClick={handleChange} type="radio" name="theme-dropdown" className="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label={theme} value={theme} />
+              <input onClick={handleChange} type="radio" name="theme-dropdown" className="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label={capitalize(theme)} value={theme} />
             </li>
           );
         })}

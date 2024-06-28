@@ -35,7 +35,6 @@ export default function DiaryEntryDetails({ entry, SetDiaryEntry, SetShowDiaryDe
     if (!entryExists) {
       //Adding new entry
       entry.new = false;
-      // setIsNew(entry.new);
       SetDiaryList([entry, ...DiaryList]);
       SaveListToStorage([entry, ...DiaryList]);
     } else {
